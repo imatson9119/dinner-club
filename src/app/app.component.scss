@@ -1,0 +1,46 @@
+.main-container {
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	background-color: #16181e;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.title {
+	font-family: 'Bebas Neue';
+	font-size: 100px;
+	color:#ffffff0a;
+
+	width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #00000021;
+    padding-top: 0.12em;
+	overflow: hidden;
+}
+
+.description {
+	margin-top: 1em;
+	font-size: 23px;
+	color: #ffffff3a;
+	font-family: 'Exo 2'
+}
+
+.timer {
+	font-size: 12px;
+	color: #ffffff2a;
+	font-family: 'Exo 2'
+}
+
+@media (max-width: 576px) {
+	.title {
+		font-size: 70px;
+	}
+}

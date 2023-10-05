@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>DinnerClub</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyBFWZ3-jkkxK71vreXiweAZq75Yv-sOSg0",
+      authDomain: "dinner-club-e5e7b.firebaseapp.com",
+      projectId: "dinner-club-e5e7b",
+      storageBucket: "dinner-club-e5e7b.appspot.com",
+      messagingSenderId: "976047089094",
+      appId: "1:976047089094:web:391242c61e5f5f5cd0fec7",
+      measurementId: "G-88W0PH962Z"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  </script>
+  <app-root></app-root>
+</body>
+</html>
