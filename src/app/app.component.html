@@ -1,6 +1,12 @@
-<div class="main-container">
+<div class="main-container"> 
   <div class="logo"></div>
+  <div class="presenting med-text">Presenting</div>
   <div class="title">Dinner Club</div>
-  <div class="description">Details Released In:</div>
-  <div class="timer">{{getDateString(this.timeRemaining)}}</div>
+  <div class="before" *ngIf="timeRemaining > 0; else drop">
+    <div class="description-container med-text">Details Released In:</div>
+    <div class="timer">{{getDateString(this.timeRemaining)}}</div>
+  </div>
+  <ng-template #drop>
+    <div class="description-container med-text">3179 Normandy Brk Rd, Dallas, TX 75212</div>
+  </ng-template>
 </div>
