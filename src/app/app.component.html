@@ -2,11 +2,57 @@
   <div class="logo"></div>
   <div class="presenting med-text">Presenting</div>
   <div class="title">Dinner Club</div>
-  <div class="before" *ngIf="timeRemaining > 0; else drop">
-    <div class="description-container med-text">Details Released In:</div>
-    <div class="timer">{{getDateString(this.timeRemaining)}}</div>
+  <div class="before" *ngIf="!this.dropped(this.drops.length - 1); else eventTimer">
+    <div class="description-container med-text">Next info drop in:</div>
+    <div class="timer">{{this.getDateString(this.timeRemaining)}}</div>
   </div>
-  <ng-template #drop>
-    <div class="description-container med-text">3179 Normandy Brk Rd, Dallas, TX 75212</div>
+  <ng-template #eventTimer>
+    <div class="before" *ngIf="this.eventStart - this.now > 0">
+      <div class="description-container med-text">Event Starts In:</div>
+      <div class="timer">{{this.getDateString(this.eventStart - this.now)}}</div>
+    </div>
   </ng-template>
+  <div class="info-main-container" *ngIf="this.dropped(0)">
+    <div class="info-container" *ngIf="this.dropped(2)">
+      <div class="header">
+        Who:
+      </div>
+      <div class="content">
+        Hosted by Emma Restivo, Ian Matson, and Rah Jacob
+      </div>
+      
+    </div>
+    <div class="info-container" *ngIf="this.dropped(1)">
+      <div class="header">
+        What:
+      </div>
+      <div class="content">
+        An exquisite 5-star dinner experience
+      </div>
+    </div>
+    <div class="info-container" *ngIf="this.dropped(0)">
+      <div class="header">
+        When:
+      </div>
+      <div class="content">
+        October 21st at 5:00 pm
+      </div>
+    </div>
+    <div class="info-container" *ngIf="this.dropped(4)">
+      <div class="header">
+        Where:
+      </div>
+      <div class="content">
+        3179 Normandy Brk Rd, Dallas, TX 75212
+      </div>
+    </div>
+    <div class="info-container" *ngIf="this.dropped(3)">
+      <div class="header">
+        Price:
+      </div>
+      <div class="content">
+        $25/person (Venmo @RahJacobRJ to RSVP)
+      </div>
+    </div>
+  </div>
 </div>

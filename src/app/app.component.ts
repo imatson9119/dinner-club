@@ -7,15 +7,41 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'dinner-club';
-  timeRemaining = new Date().getTime() 
-  dropDate = new Date(2023,9,21,0,0,0).getTime()
-  // dropDate = new Date(2023,9,5,17,55,0).getTime()
+  timeRemaining = 0;
+  now = new Date().getTime()
+  eventStart = new Date(2023,9,21,18,0,0).getTime()
+  drops = [
+    new Date(2023,9,7,10,0,0).getTime(),
+    new Date(2023,9,8,10,0,0).getTime(),
+    new Date(2023,9,9,10,0,0).getTime(),
+    new Date(2023,9,10,10,0,0).getTime(),
+    new Date(2023,9,11,10,0,0).getTime(),
+    // new Date(2023,9,21,0,0,0).getTime(),
+  ]
+
   
     constructor() {
         setInterval(() => {
-          let now = new Date().getTime();
-          this.timeRemaining = this.dropDate - now
+            this.now = new Date().getTime()
+            this.timeRemaining = this.getTimeToNextDrop()
         }, 1);
+    }
+
+    dropped(i){
+      if(i > this.drops.length || i < 0){
+        return false;
+      }
+      return this.drops[i] - new Date().getTime() < 1000
+    } 
+
+    getTimeToNextDrop() {
+      for(let i = 0; i < this.drops.length; i++){
+        let timeRemaining = this.drops[i] - new Date().getTime()
+        if(timeRemaining >= 1000){
+          return timeRemaining;
+        }
+      }
+      return -1;
     }
 
     getDateString(distance){
@@ -45,5 +71,19 @@ export class AppComponent {
         build += seconds + " seconds "
       }
       return build
+    }
+
+    randomInt(high,low) {
+      return Math.floor(Math.random() * (high-low) + low)
+    }
+
+    getRandomSentence(){
+      let words = ["what", "underground", "HUGE", "cancel", "Subscribe", "toy", "I", "thinking", "dinner"]
+      let build = ""
+      let nWords = this.randomInt(5,10)
+      for(let i = 0; i < nWords; i++){
+        build += words[this.randomInt(0,words.length-1)] + " "
+      }
+      return build;
     }
 }
