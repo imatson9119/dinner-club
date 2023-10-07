@@ -1,57 +1,54 @@
 <div class="main-container"> 
-  <div class="logo"></div>
-  <div class="presenting med-text">Presenting</div>
-  <div class="title">Dinner Club</div>
-  <div class="before" *ngIf="!this.dropped(this.drops.length - 1); else eventTimer">
-    <div class="description-container med-text">Next info drop in:</div>
-    <div class="timer">{{this.getDateString(this.timeRemaining)}}</div>
-  </div>
-  <ng-template #eventTimer>
-    <div class="before" *ngIf="this.eventStart - this.now > 0">
-      <div class="description-container med-text">Event Starts In:</div>
-      <div class="timer">{{this.getDateString(this.eventStart - this.now)}}</div>
+  <div class="sub-container">
+    <div class="logo-container">
+      <img class="logo" src="/assets/logo-crop.png" alt="Dinner Club Logo">
     </div>
-  </ng-template>
-  <div class="info-main-container" *ngIf="this.dropped(0)">
-    <div class="info-container" *ngIf="this.dropped(2)">
-      <div class="header">
-        Who:
+    <div class="before" *ngIf="!this.dropped(this.drops.length - 1)">
+      <div class="description-container med-text">
+        {{this.drop_timer_texts[this.getDropNumber()]}}
       </div>
-      <div class="content">
-        Hosted by Emma Restivo, Ian Matson, and Rah Jacob
-      </div>
-      
+      <div class="timer">{{this.getDateString(this.timeRemaining)}}</div>
     </div>
-    <div class="info-container" *ngIf="this.dropped(1)">
-      <div class="header">
-        What:
+    <div class="info-main-container" *ngIf="this.dropped(0)">
+      <div class="info-container" *ngIf="this.dropped(0)">
+        <div class="header">
+          Date / Time:
+        </div>
+        <div class="content">
+          October 21st at 6:05 p.m.
+        </div>
       </div>
-      <div class="content">
-        An exquisite 5-star dinner experience
+      <div class="info-container" *ngIf="this.dropped(1)">
+        <div class="header">
+          Description:
+        </div>
+        <div class="content">
+          An exquisite 5-star dinner experience
+        </div>
       </div>
-    </div>
-    <div class="info-container" *ngIf="this.dropped(0)">
-      <div class="header">
-        When:
+      <div class="info-container" *ngIf="this.dropped(2)">
+        <div class="header">
+          Hosted By:
+        </div>
+        <div class="content">
+          Emma Restivo, Ian Matson, and Rah Jacob
+        </div>  
       </div>
-      <div class="content">
-        October 21st at 5:00 pm
+      <div class="info-container" *ngIf="this.dropped(3)">
+        <div class="header">
+          Price:
+        </div>
+        <div class="content">
+          $25 per person (Venmo <span class="navy"><b>@RahJacobRJ</b></span> by Oct 13th at 11:59pm to RSVP)
+        </div>
       </div>
-    </div>
-    <div class="info-container" *ngIf="this.dropped(4)">
-      <div class="header">
-        Where:
-      </div>
-      <div class="content">
-        3179 Normandy Brk Rd, Dallas, TX 75212
-      </div>
-    </div>
-    <div class="info-container" *ngIf="this.dropped(3)">
-      <div class="header">
-        Price:
-      </div>
-      <div class="content">
-        $25/person (Venmo @RahJacobRJ to RSVP)
+      <div class="info-container" *ngIf="this.dropped(4)">
+        <div class="header">
+          Location:
+        </div>
+        <div class="content">
+          3179 Normandy Brk Rd, Dallas, TX 75212
+        </div>
       </div>
     </div>
   </div>

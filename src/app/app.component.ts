@@ -9,15 +9,23 @@ export class AppComponent {
   title = 'dinner-club';
   timeRemaining = 0;
   now = new Date().getTime()
-  eventStart = new Date(2023,9,21,18,0,0).getTime()
   drops = [
-    new Date(2023,9,7,10,0,0).getTime(),
-    new Date(2023,9,8,10,0,0).getTime(),
-    new Date(2023,9,9,10,0,0).getTime(),
-    new Date(2023,9,10,10,0,0).getTime(),
-    new Date(2023,9,11,10,0,0).getTime(),
-    // new Date(2023,9,21,0,0,0).getTime(),
+    new Date(2023,9,7,19,5,0).getTime(),
+    new Date(2023,9,8,8,0,0).getTime(),
+    new Date(2023,9,9,8,0,0).getTime(),
+    new Date(2023,9,10,8,0,0).getTime(),
+    new Date(2023,9,21,8,0,0).getTime(),
+    new Date(2023,9,21,18,5,0).getTime(),
   ]
+  drop_timer_texts = [
+    "Date / Time Revealed In:",
+    "Description Revealed In:",
+    "Hosts Revealed In",
+    "Price / RSVP Revealed In:",
+    "Location Revealed In:",
+    "Event Starts In:"
+  ]
+
 
   
     constructor() {
@@ -33,6 +41,16 @@ export class AppComponent {
       }
       return this.drops[i] - new Date().getTime() < 1000
     } 
+
+    getDropNumber(){
+      for(let i = 0; i < this.drops.length; i++){
+        let timeRemaining = this.drops[i] - new Date().getTime()
+        if(timeRemaining >= 1000){
+          return i;
+        }
+      }
+      return -1;
+    }
 
     getTimeToNextDrop() {
       for(let i = 0; i < this.drops.length; i++){
