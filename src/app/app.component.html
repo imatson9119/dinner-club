@@ -1,5 +1,5 @@
 <div class="main-container"> 
-  <div class="sub-container">
+  <div class="sub-container" *ngIf="this._authService.getAuthenticated(); else challenge">
     <div class="logo-container">
       <img class="logo" src="/assets/logo-crop.png" alt="Dinner Club Logo">
     </div>
@@ -23,7 +23,7 @@
           Description:
         </div>
         <div class="content">
-          An exquisite 5-star dinner experience
+          A world class 5 course dining experience
         </div>
       </div>
       <div class="info-container" *ngIf="this.dropped(2)">
@@ -53,3 +53,7 @@
     </div>
   </div>
 </div>
+
+<ng-template #challenge>
+  <app-challenge></app-challenge>
+</ng-template>

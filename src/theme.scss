@@ -1,0 +1,25 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '~@angular/material' as mat;
+@include mat.legacy-core();
+
+$dinner-club-primary: mat.define-palette(mat.$mat-indigo);
+$dinner-club-accent: mat.define-palette(mat.$mat-gray, 100, 200, 300);
+
+// The warn palette is optional (defaults to red).
+$dinner-club-warn: mat.define-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$dinner-club-theme: mat.define-light-theme((
+    color: (
+        primary: $dinner-club-primary,
+        accent: $dinner-club-accent,
+        warn: $dinner-club-warn,
+    ),
+    typography: mat.define-typography-config(),
+    density: 0,
+));
+
+@include mat.all-component-themes($dinner-club-theme);
+@include mat.all-legacy-component-themes($dinner-club-theme);

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-root',
@@ -28,7 +29,7 @@ export class AppComponent {
 
 
   
-    constructor() {
+    constructor(public _authService: AuthService) {
         setInterval(() => {
             this.now = new Date().getTime()
             this.timeRemaining = this.getTimeToNextDrop()
