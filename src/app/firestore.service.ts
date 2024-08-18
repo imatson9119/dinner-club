@@ -40,5 +40,10 @@ export class FirestoreService {
     return setDoc(doc(this.stateCollection, 'progress'), { stage: stage });
   }
 
+  canAccessStage(stage: number): Promise<boolean> { 
+    return this.getStage().then((curStage) => { 
+      return curStage >= stage; 
+    }); 
+  }
 
 }

@@ -16,6 +16,6 @@ export class AuthService {
 
   setAuthenticated(val: boolean){
     this.authenticated = val;
-    localStorage.setItem('passed_chanllenge', val.toString())
+    localStorage.setItem('passed_challenge', val.toString())
   }
 }
