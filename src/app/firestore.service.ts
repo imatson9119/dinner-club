@@ -20,7 +20,7 @@ export class FirestoreService {
     }
     if (ENV === 'dev') { 
       return new Promise((resolve) => { 
-        resolve(0); 
+        resolve(1); 
       }); 
     }
     return new Promise((resolve, reject) => { 

@@ -1,10 +1,10 @@
 @mixin button-styles($color) {
   background-color: $color;
-  box-shadow: 0px 6px 0px darken($color, 30%);
+  box-shadow: 0px 6px 0px darken($color, 20%);
 
   &:active {
     transform: translateY(4px) ;
-    box-shadow: 0px 2px 0px darken($color, 30%);
+    box-shadow: 0px 2px 0px darken($color, 20%);
   }
 }
 
@@ -36,33 +36,33 @@
 }
 
 .button0 {
-  @include button-styles(#c69898);
+  @include button-styles(#e691e6);
 }
 
 .button1 {
-  @include button-styles(#98c6c6);
+  @include button-styles(#aeeeae);
 }
 
 .button2 {
-  @include button-styles(#c6c698);
+  @include button-styles(#e6e69b);
 }
 
 .button3 {
-  @include button-styles(#c698c6);
+  @include button-styles(#e59c9c);
 }
 
 .button4 {
-  @include button-styles(#98c698);
+  @include button-styles(#9b9bed);
 }
 
 .button5 {
-  @include button-styles(#c6ac98);
+  @include button-styles(#e994c3);
 }
 
 .button6 {
-  @include button-styles(#aa98c6);
+  @include button-styles(#a1e6e6);
 }
 
 .button7 {
-  @include button-styles(#98c6b8);
+  @include button-styles(#e8cc91);
 }
