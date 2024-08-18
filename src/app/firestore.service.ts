@@ -18,11 +18,11 @@ export class FirestoreService {
         resolve(this.curStage!); 
       }); 
     }
-    if (ENV === 'dev') { 
-      return new Promise((resolve) => { 
-        resolve(1); 
-      }); 
-    }
+    // if (ENV === 'dev') { 
+    //   return new Promise((resolve) => { 
+    //     resolve(2); 
+    //   }); 
+    // }
     return new Promise((resolve, reject) => { 
       const q = query(this.stateCollection, where(documentId(), "==", "progress")); 
       getDocs(q).then((querySnapshot) => { 
@@ -37,11 +37,11 @@ export class FirestoreService {
 
   setStage(stage: number): Promise<void> { 
     this.curStage = stage;
-    if (ENV === 'dev') { 
-      return new Promise((resolve) => { 
-        resolve(); 
-      }); 
-    }
+    // if (ENV === 'dev') { 
+    //   return new Promise((resolve) => { 
+    //     resolve(); 
+    //   }); 
+    // }
     return setDoc(doc(this.stateCollection, 'progress'), { stage: stage });
   }
 
