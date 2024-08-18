@@ -1,0 +1,64 @@
+@mixin button-styles($color) {
+  background-color: $color;
+  box-shadow: 0px 6px 0px darken($color, 30%);
+
+  &:active {
+    transform: translateY(4px);
+    box-shadow: 0px 2px 0px darken($color, 30%);
+  }
+}
+
+.main-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.button {
+  width: 3.2rem;
+  height: 3rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all ease-in-out .1s;
+  border: none;
+  border-style: outset 0px;
+}
+
+.button0 {
+  @include button-styles(#c69898);
+}
+
+.button1 {
+  @include button-styles(#98c6c6);
+}
+
+.button2 {
+  @include button-styles(#c6c698);
+}
+
+.button3 {
+  @include button-styles(#c698c6);
+}
+
+.button4 {
+  @include button-styles(#98c698);
+}
+
+.button5 {
+  @include button-styles(#98c6c6);
+}
+
+.button6 {
+  @include button-styles(#c6c698);
+}

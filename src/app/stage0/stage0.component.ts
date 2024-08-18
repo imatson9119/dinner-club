@@ -1,5 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { FirestoreService } from '../firestore.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-stage0',
@@ -13,9 +15,12 @@ import { FormsModule } from '@angular/forms';
 export class Stage0Component {
 
   code = 'churchatthecross';
+  color: string = '#fff';
 
   @ViewChild('input')
   input: ElementRef | undefined;
+
+  constructor(public _firestore: FirestoreService, public _router: Router) {}
 
   ngOnViewInit() {
     this.focusInput();
@@ -38,6 +43,11 @@ export class Stage0Component {
   }
 
   nextStage() {
-    console.log('Next stage');
+    this.color = '#6f6';
+  
+    setTimeout(() => {
+      this._firestore.setStage(1);
+      this._router.navigate(['/stage-1']);
+    }, 1000);
   }
 }

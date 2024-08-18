@@ -1,5 +1,5 @@
 <div class="main-container">
-  <div class="stage">
-    <router-outlet></router-outlet>
+  <div [@routeAnimations]="prepareRoute(outlet)" class="stage">
+    <router-outlet #outlet="outlet"></router-outlet>
   </div>
 </div>
