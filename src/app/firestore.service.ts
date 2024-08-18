@@ -37,6 +37,11 @@ export class FirestoreService {
 
   setStage(stage: number): Promise<void> { 
     this.curStage = stage;
+    if (ENV === 'dev') { 
+      return new Promise((resolve) => { 
+        resolve(); 
+      }); 
+    }
     return setDoc(doc(this.stateCollection, 'progress'), { stage: stage });
   }
 
