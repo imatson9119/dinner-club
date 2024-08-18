@@ -1,0 +1,16 @@
+.main-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.input {
+  min-width: 1rem;
+  color: white;
+  outline: none;
+  text-align: center;
+  letter-spacing: .4rem;
+  font-size: 2rem;
+}
