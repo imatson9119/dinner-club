@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/dinner-club",
+    "public": "dist/dinner-club/browser",
     "ignore": [
       "firebase.json",
       "**/.*",

@@ -10,17 +10,17 @@ export class FirestoreService {
 
   constructor(public firestore: Firestore) { }
   stateCollection = collection(this.firestore, 'state');
-  cs: number | undefined;
+  curStage: number | undefined;
 
-  gs(): Promise<number> { 
-    if (this.cs) { 
+  getStage(): Promise<number> { 
+    if (this.curStage) { 
       return new Promise((resolve) => { 
-        resolve(this.cs!); 
+        resolve(this.curStage!); 
       }); 
     }
     if (ENV === 'dev') { 
       return new Promise((resolve) => { 
-        resolve(0); 
+        resolve(2); 
       }); 
     }
     return new Promise((resolve, reject) => { 
@@ -35,8 +35,8 @@ export class FirestoreService {
     });
   }
 
-  ss(stage: number): Promise<void> { 
-    this.cs = stage;
+  setStage(stage: number): Promise<void> { 
+    this.curStage = stage;
     if (ENV === 'dev') { 
       return new Promise((resolve) => { 
         resolve(); 
@@ -45,9 +45,9 @@ export class FirestoreService {
     return setDoc(doc(this.stateCollection, 'progress'), { stage: stage });
   }
 
-  cas?(stage: number): Promise<boolean> { 
-    return this.gs().then((cs) => { 
-      return cs >= stage; 
+  canAccessStage(stage: number): Promise<boolean> { 
+    return this.getStage().then((curStage) => { 
+      return curStage >= stage; 
     }); 
   }
 

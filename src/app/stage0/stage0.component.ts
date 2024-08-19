@@ -18,16 +18,7 @@ import { MatRipple, MatRippleModule } from '@angular/material/core';
 })
 export class Stage0Component {
 
-  a = 'u';
-  b = 'c';
-  c = 'o';
-  d = 'r';
-  e = 'e';
-  f = 'h';
-  g = 't';
-  h = 'a';
-  i = 's';
-  x = 'crustacean';
+  code = 'churchatthecross';
   color: string = '#fff';
 
 
@@ -37,29 +28,21 @@ export class Stage0Component {
   @ViewChild('input')
   input: ElementRef | undefined;
 
-  constructor(public _firestore: FirestoreService, public _router: Router) {
-    this.a = 's';
-    this.b = 'o';
-    this.c = 'r';
-    this.d = 'c';
-    this.i = 'u';
-    this.x = this.d + this.f + this.i + this.c + this.d + this.f + this.h + this.g + this.g + this.f + this.e + this.d + this.c + this.b + this.a + this.a
-  }
+  constructor(public _firestore: FirestoreService, public _router: Router) {}
 
   ngOnViewInit() {
     this.focusInput();
   }
 
-  onChange() {  
-    console.log(this.x)
+  onChange() {
     if (!this.input) {
       return;
     }
 
     const value = this.input.nativeElement.innerText;
 
-    if(value && this.x === value.toLowerCase().replace(/[^a-z]/g, '')){
-      this.ns();
+    if(value && this.code == value.toLowerCase().replace(/[^a-z]/g, '')){
+      this.nextStage();
     }
   }
 
@@ -67,12 +50,12 @@ export class Stage0Component {
     this.input?.nativeElement.focus();
   }
 
-  ns() {
+  nextStage() {
     this.color = '#6f6';
     this.ripple?.launch({centered: true});
   
     setTimeout(() => {
-      this._firestore.ss(1);
+      this._firestore.setStage(1);
       this._router.navigate(['/stage-1']);
     }, 1000);
   }

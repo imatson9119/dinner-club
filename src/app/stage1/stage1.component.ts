@@ -13,29 +13,29 @@ import { InfoBarComponent } from '../info-bar/info-bar.component';
 })
 export class Stage1Component {
 
-  originator: string = '01234567';
-  asyncPipe: string = '';
+  order: string = '01234567';
+  curOrder: string = '';
 
   @ViewChild(MatRipple) ripple: MatRipple | undefined;
   
-  constructor(public _rx: Router, public _fs: FirestoreService) {}
+  constructor(public _router: Router, public _firestore: FirestoreService) {}
   
-  forwardEvent(button: number) {
-    if (this.asyncPipe.length >= this.originator.length) {
-      this.asyncPipe = this.asyncPipe.substring(1) + button;
+  clicked(button: number) {
+    if (this.curOrder.length >= this.order.length) {
+      this.curOrder = this.curOrder.substring(1) + button;
     } else {
-      this.asyncPipe += button;
+      this.curOrder += button;
     }
 
-    if (this.asyncPipe == this.originator) {
-      this.ns();
+    if (this.curOrder == this.order) {
+      this.nextStage();
     }
   }
 
-  async ns() {
+  async nextStage() {
     this.ripple?.launch({centered: true});
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    this._fs.ss(2);
-    this._rx.navigate(['/stage-2']);
+    this._firestore.setStage(2);
+    this._router.navigate(['/stage-2']);
   }
 }

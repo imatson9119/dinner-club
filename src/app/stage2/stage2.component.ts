@@ -15,25 +15,23 @@ export class Stage2Component implements AfterViewInit {
 
   @ViewChild(MatRipple) ripple: MatRipple | undefined;
   
-  p = 'test';
+  phrase = 'test';
 
   constructor(private _router: Router, private _firestore: FirestoreService) {}
 
   ngAfterViewInit(): void {
     const urlParams = new URLSearchParams(window.location.search);
-    console.log(window.location.href);
     const phrase = urlParams.get('phrase');
-    console.log('Phrase:', phrase);
-    if (phrase && phrase === this.p) {
+    if (phrase && phrase === this.phrase) {
       // Set stage to 3
-      this.ns();
+      this.nextStage();
     }
   }
 
-  async ns() {
+  async nextStage() {
     this.ripple?.launch({centered: true});
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    this._firestore.ss(3);
+    this._firestore.setStage(3);
     this._router.navigate(['/stage-3']);
   }
 }
