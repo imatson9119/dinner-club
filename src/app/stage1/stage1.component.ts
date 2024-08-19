@@ -13,7 +13,7 @@ import { InfoBarComponent } from '../info-bar/info-bar.component';
 })
 export class Stage1Component {
 
-  order: string = '01234567';
+  order: string = '31570246';
   curOrder: string = '';
 
   @ViewChild(MatRipple) ripple: MatRipple | undefined;
