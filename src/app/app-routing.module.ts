@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { Stage0Component } from './stage0/stage0.component';
 import { Stage1Component } from './stage1/stage1.component';
+import { Stage0Component } from './stage0/stage0.component';
 import { stageGuard } from './stage.guard';
 import { Stage2Component } from './stage2/stage2.component';
 import { Stage3Component } from './stage3/stage3.component';
