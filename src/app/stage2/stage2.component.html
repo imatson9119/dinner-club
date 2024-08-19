@@ -1,5 +1,13 @@
-<div class="main-container">
-  <div class="text">
-    3195.19257 = x<sup>2</sup> + 64.19678x
-  </div>
+<app-info-bar [stage]="2"></app-info-bar>
+<div
+  class="main-container"
+  [matRippleAnimation]="{ enterDuration: 1000, exitDuration: 1000 }"
+  matRipple
+  matRippleColor="rgba(255, 255, 255, 0.1)"
+  [matRippleTrigger]="dummyTrigger"
+  [matRippleCentered]="true"
+  class="main-container"
+>
+  <div class="text">3195.19257 = x<sup>2</sup> + 64.19678x</div>
 </div>
+<div #dummyTrigger style="display: none"></div>

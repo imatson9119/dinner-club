@@ -2,40 +2,40 @@ import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { FirestoreService } from '../firestore.service';
 import { MatRipple, MatRippleModule } from '@angular/material/core';
+import { InfoBarComponent } from '../info-bar/info-bar.component';
 
 @Component({
   selector: 'app-stage1',
   standalone: true,
-  imports: [MatRippleModule],
+  imports: [MatRippleModule, InfoBarComponent],
   templateUrl: './stage1.component.html',
   styleUrl: './stage1.component.scss'
 })
 export class Stage1Component {
 
-  order: string = '01234567';
-  curOrder: string = '';
+  originator: string = '01234567';
+  asyncPipe: string = '';
 
   @ViewChild(MatRipple) ripple: MatRipple | undefined;
   
-  constructor(public _router: Router, public _firestore: FirestoreService) {}
+  constructor(public _rx: Router, public _fs: FirestoreService) {}
   
-  clicked(button: number) {
-    if (this.curOrder.length >= this.order.length) {
-      this.curOrder = this.curOrder.substring(1) + button;
+  forwardEvent(button: number) {
+    if (this.asyncPipe.length >= this.originator.length) {
+      this.asyncPipe = this.asyncPipe.substring(1) + button;
     } else {
-      this.curOrder += button;
+      this.asyncPipe += button;
     }
 
-    if (this.curOrder == this.order) {
-      this.nextStage();
+    if (this.asyncPipe == this.originator) {
+      this.ns();
     }
-    console.log('Current order:', this.curOrder);
   }
 
-  async nextStage() {
+  async ns() {
     this.ripple?.launch({centered: true});
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    this._firestore.setStage(2);
-    this._router.navigate(['/stage-2']);
+    this._fs.ss(2);
+    this._rx.navigate(['/stage-2']);
   }
 }

@@ -10,19 +10,19 @@ export class FirestoreService {
 
   constructor(public firestore: Firestore) { }
   stateCollection = collection(this.firestore, 'state');
-  curStage: number | undefined;
+  cs: number | undefined;
 
-  getStage(): Promise<number> { 
-    if (this.curStage) { 
+  gs(): Promise<number> { 
+    if (this.cs) { 
       return new Promise((resolve) => { 
-        resolve(this.curStage!); 
+        resolve(this.cs!); 
       }); 
     }
-    // if (ENV === 'dev') { 
-    //   return new Promise((resolve) => { 
-    //     resolve(2); 
-    //   }); 
-    // }
+    if (ENV === 'dev') { 
+      return new Promise((resolve) => { 
+        resolve(0); 
+      }); 
+    }
     return new Promise((resolve, reject) => { 
       const q = query(this.stateCollection, where(documentId(), "==", "progress")); 
       getDocs(q).then((querySnapshot) => { 
@@ -35,19 +35,19 @@ export class FirestoreService {
     });
   }
 
-  setStage(stage: number): Promise<void> { 
-    this.curStage = stage;
-    // if (ENV === 'dev') { 
-    //   return new Promise((resolve) => { 
-    //     resolve(); 
-    //   }); 
-    // }
+  ss(stage: number): Promise<void> { 
+    this.cs = stage;
+    if (ENV === 'dev') { 
+      return new Promise((resolve) => { 
+        resolve(); 
+      }); 
+    }
     return setDoc(doc(this.stateCollection, 'progress'), { stage: stage });
   }
 
-  canAccessStage(stage: number): Promise<boolean> { 
-    return this.getStage().then((curStage) => { 
-      return curStage >= stage; 
+  cas?(stage: number): Promise<boolean> { 
+    return this.gs().then((cs) => { 
+      return cs >= stage; 
     }); 
   }
 

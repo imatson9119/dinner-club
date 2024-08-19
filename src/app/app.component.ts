@@ -13,7 +13,7 @@ export class AppComponent {
   title = 'dinner-club';
   
   constructor(public _firestore: FirestoreService, public _router: Router, public _contexts: ChildrenOutletContexts) {
-    _firestore.getStage().then((stage) => {
+    _firestore.gs().then((stage) => {
       if (window.location.pathname !== '/stage-' + stage) _router.navigate(['/stage-' + stage]);
     }).catch((error) => {
       console.error('Error getting stage:', error);
