@@ -21,14 +21,14 @@ export class FirestoreService {
   }
   
   getStage(): Promise<number> { 
-    // if (ENV === 'dev') { 
-    //   return new Promise((resolve) => { 
-    //     resolve(2); 
-    //   }); 
-    // }
     if (this.curStage) { 
       return new Promise((resolve) => { 
         resolve(this.curStage!); 
+      }); 
+    }
+    if (ENV === 'dev') { 
+      return new Promise((resolve) => { 
+        resolve(3); 
       }); 
     }
     return new Promise((resolve, reject) => { 
@@ -51,12 +51,12 @@ export class FirestoreService {
   }
 
   setStage(stage: number): Promise<void> { 
-    // if (ENV === 'dev') { 
-    //   return new Promise((resolve) => { 
-    //     resolve(); 
-    //   }); 
-    // }
     this.curStage = stage;
+    if (ENV === 'dev') { 
+      return new Promise((resolve) => { 
+        resolve(); 
+      }); 
+    }
     return setDoc(doc(this.progressCollection, this.userHash), {stage: stage});
   }
 

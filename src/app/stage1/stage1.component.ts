@@ -6,7 +6,7 @@ import { InfoBarComponent } from "../info-bar/info-bar.component";
 import { MatRipple, MatRippleModule } from '@angular/material/core';
 
 @Component({
-  selector: 'app-stage0',
+  selector: 'app-stage1',
   standalone: true,
   imports: [
     FormsModule,
@@ -18,9 +18,8 @@ import { MatRipple, MatRippleModule } from '@angular/material/core';
 })
 export class Stage1Component {
 
-  code = 'churchatthecross';
+  code = 'feastingtogether';
   color: string = '#fff';
-
 
   @ViewChild(MatRipple) 
   ripple: MatRipple | undefined;
@@ -30,7 +29,7 @@ export class Stage1Component {
 
   constructor(public _firestore: FirestoreService, public _router: Router) {}
 
-  ngOnViewInit() {
+  ngAfterViewInit() {
     this.focusInput();
   }
 
