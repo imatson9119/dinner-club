@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { collection, doc, documentId, Firestore, getDoc, getDocs, query, setDoc, where } from '@angular/fire/firestore';
+import { collection, doc, Firestore, getDoc, setDoc } from '@angular/fire/firestore';
 
 const ENV = document.URL.includes('localhost') ? 'dev' : 'prod';
 const LOCAL_STORAGE_KEY = 'user_hash';
@@ -26,11 +26,11 @@ export class FirestoreService {
         resolve(this.curStage!); 
       }); 
     }
-    if (ENV === 'dev') { 
-      return new Promise((resolve) => { 
-        resolve(3); 
-      }); 
-    }
+    // if (ENV === 'dev') {
+    //   return new Promise((resolve) => { 
+    //     resolve(3); 
+    //   }); 
+    // }
     return new Promise((resolve, reject) => { 
       const userDoc = doc(this.progressCollection, this.userHash);
       getDoc(userDoc).then((snapshot) => { 
@@ -52,11 +52,11 @@ export class FirestoreService {
 
   setStage(stage: number): Promise<void> { 
     this.curStage = stage;
-    if (ENV === 'dev') { 
-      return new Promise((resolve) => { 
-        resolve(); 
-      }); 
-    }
+    // if (ENV === 'dev') { 
+    //   return new Promise((resolve) => { 
+    //     resolve(); 
+    //   }); 
+    // }
     return setDoc(doc(this.progressCollection, this.userHash), {stage: stage});
   }
 
