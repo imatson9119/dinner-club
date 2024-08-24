@@ -28,7 +28,7 @@ export class FirestoreService {
     }
     // if (ENV === 'dev') {
     //   return new Promise((resolve) => { 
-    //     resolve(3); 
+    //     resolve(5); 
     //   }); 
     // }
     return new Promise((resolve, reject) => { 
@@ -38,8 +38,8 @@ export class FirestoreService {
           this.curStage = snapshot.data()['stage']; 
           resolve(this.curStage!); 
         } else { 
-          this.setStage(0).then(() => { 
-            resolve(0); 
+          this.setStage(1).then(() => { 
+            resolve(1); 
           }).catch((error) => { 
             reject(error); 
           }); 

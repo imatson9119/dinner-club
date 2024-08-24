@@ -19,14 +19,8 @@ import { MatRipple, MatRippleModule } from '@angular/material/core';
 export class Stage4Component {
 
   codes = [
-    'buongiorno',
-    'bonjourno',
-    'bongiorno',
-    'buongorno',
-    'bongorno',
-    'bonjorno',
-    'buonjorno',
-    'buonjourno',
+    'chickenparm',
+    'chickenparmesan',
   ];
   color: string = '#fff';
 

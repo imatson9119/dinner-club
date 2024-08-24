@@ -1,123 +1,36 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { FirestoreService } from '../firestore.service';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { InfoBarComponent } from "../info-bar/info-bar.component";
+import { FirestoreService } from '../firestore.service';
+import { InfoBarComponent } from '../info-bar/info-bar.component';
 import { MatRipple, MatRippleModule } from '@angular/material/core';
-import { CommonModule } from '@angular/common';
-
-// Declare webkitSpeechRecognition
-declare var webkitSpeechRecognition: any;
 
 @Component({
   selector: 'app-stage5',
   standalone: true,
-  imports: [
-    FormsModule,
-    InfoBarComponent,
-    MatRippleModule,
-    CommonModule
-],
+  imports: [InfoBarComponent, MatRippleModule],
   templateUrl: './stage5.component.html',
   styleUrl: './stage5.component.scss'
 })
-export class Stage5Component {
+export class Stage5Component implements AfterViewInit {
 
-  hasSpeechRecognition = false;
-  recognition: any;
-
-  curWords: any = {
-    'proven': false,
-    'apple': false,
-    'spin': false,
-    'snake': false,
-    'world': false,
-    'over': false,
-    'recover': false,
-    'delete': false
-  }
-  color: string = '#fff';
-  interval: any = undefined;
-
-  @ViewChild(MatRipple) 
-  ripple: MatRipple | undefined;
+  @ViewChild(MatRipple) ripple: MatRipple | undefined;
   
-  @ViewChild('input')
-  input: ElementRef | undefined;
+  phrase = 'wow-you-are-really-good-at-this';
 
-  constructor(public _firestore: FirestoreService, public _router: Router) {
-    
-  }
+  constructor(private _router: Router, private _firestore: FirestoreService) {}
 
-  ngAfterViewInit() {
-    this.focusInput();
-
-    if ('webkitSpeechRecognition' in window) {
-      this.hasSpeechRecognition = true;
-      this.recognition = new webkitSpeechRecognition();
-      this.recognition.continuous = true;
-      this.recognition.interimResults = false;
-      this.recognition.lang = 'en-US';
-      this.recognition.onresult = (event: any) => {
-        for (let i = event.resultIndex; i < event.results.length; i++) {
-          if (event.results[i].isFinal) {
-            const transcript = event.results[i][0].transcript.toLowerCase();
-            for (let word in this.curWords) {
-              console.log(transcript);
-              if (transcript.includes(word)) {
-                this.curWords[word] = true;
-              }
-            }
-          }
-        }
-        if (Object.values(this.curWords).every((v: any) => v === true)) {
-          this.nextStage();
-        }
-      }
-      this.recognition.onspeechend = () => {
-        this.recognition.stop();
-      };
-      this.recognition.start();
-      this.interval = setInterval(() => {
-        try{
-          this.recognition.start();
-        } catch(e) {
-        }
-      }, 1000);
+  ngAfterViewInit(): void {
+    const urlParams = new URLSearchParams(window.location.search);
+    const phrase = urlParams.get('phrase');
+    if (phrase && phrase === this.phrase) {
+      this.nextStage();
     }
   }
 
-  onChange() {
-    if (!this.input) {
-      return;
-    }
-
-    for (let word in this.curWords) {
-      if (this.curWords[word] === true) {
-        continue;
-      }
-      if (!this.input.nativeElement.innerText.includes(word)) {
-        return;
-      }
-    }
-    this.nextStage();
-  }
-
-  focusInput() {
-    this.input?.nativeElement.focus();
-  }
-
-  nextStage() {
-    clearInterval(this.interval);
-    try {
-      this.recognition.stop();
-    } catch (e) {}
-    this.color = '#6f6';
+  async nextStage() {
     this.ripple?.launch({centered: true});
-  
-    setTimeout(() => {
-      this._firestore.setStage(6);
-      this._router.navigate(['/stage-6']);
-    }, 1000);
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    this._firestore.setStage(6);
+    this._router.navigate(['/stage-6']);
   }
 }

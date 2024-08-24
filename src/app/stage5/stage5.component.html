@@ -1,23 +1,13 @@
 <app-info-bar [stage]="5"></app-info-bar>
 <div
+  class="main-container"
   [matRippleAnimation]="{ enterDuration: 1000, exitDuration: 1000 }"
   matRipple
   matRippleColor="rgba(255, 255, 255, 0.1)"
   [matRippleTrigger]="dummyTrigger"
   [matRippleCentered]="true"
   class="main-container"
-  (click)="this.focusInput()"
 >
-  <div [style]="this.hasSpeechRecognition ? 'position: relative;' : 'position: absolute; top:30%;'" class="text">Hey, I just met you...</div>
-  <div
-  *ngIf="!this.hasSpeechRecognition"
-    (input)="this.onChange()"
-    contenteditable
-    autofocus
-    #input
-    type="text"
-    class="input"
-    [style.color]="this.color"
-  ></div>
+  <img src="assets/stage-5.jpg" class="image" />
 </div>
 <div #dummyTrigger style="display: none"></div>

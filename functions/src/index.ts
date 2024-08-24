@@ -1,19 +1,34 @@
-/**
- * Import function triggers from their respective submodules:
- *
- * import {onCall} from "firebase-functions/v2/https";
- * import {onDocumentWritten} from "firebase-functions/v2/firestore";
- *
- * See a full list of supported triggers at https://firebase.google.com/docs/functions
- */
+import {
+  onDocumentUpdated,
 
-import {onRequest} from "firebase-functions/v2/https";
-import * as logger from "firebase-functions/logger";
+} from "firebase-functions/v2/firestore";
+import admin from 'firebase-admin';
 
-// Start writing functions
-// https://firebase.google.com/docs/functions/typescript
+admin.initializeApp();
 
-// export const helloWorld = onRequest((request, response) => {
-//   logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+const numbers = ['+17087171225', '+18323643437', '+14095945718']
+
+exports.textForMax = onDocumentUpdated("progress/{userId}", (event) => {
+  if (!event.data) {
+    return;
+  }
+  let stage = event.data.after.data().stage;
+  // query collection and see if it is a new max stage
+  // if so, update the state collection
+
+  const stateCollection = admin.firestore().collection("state");
+  const stateDoc = stateCollection.doc("maxStage");
+  stateDoc.get().then((snapshot) => {
+    const maxStage = snapshot.data()?.stage;
+    if (stage && stage > maxStage) {
+      stateDoc.set({ stage: stage });
+      numbers.forEach((number) => {
+        admin.firestore().collection('messages').add({
+          to: `whatsapp:${number}`,
+          from: `whatsapp:+14155238886`,
+          body: `User progressed to stage ${stage}`
+        });
+      });    
+    }
+  });
+});
