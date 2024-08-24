@@ -1,71 +1,37 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { FirestoreService } from '../firestore.service';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { InfoBarComponent } from "../info-bar/info-bar.component";
+import { FirestoreService } from '../firestore.service';
+import { InfoBarComponent } from '../info-bar/info-bar.component';
 import { MatRipple, MatRippleModule } from '@angular/material/core';
 
 @Component({
   selector: 'app-stage3',
   standalone: true,
-  imports: [
-    FormsModule,
-    InfoBarComponent,
-    MatRippleModule
-],
+  imports: [InfoBarComponent, MatRippleModule],
   templateUrl: './stage3.component.html',
   styleUrl: './stage3.component.scss'
 })
-export class Stage3Component {
+export class Stage3Component implements AfterViewInit {
 
-  codes = [
-    'buongiorno',
-    'bonjourno',
-    'bongiorno',
-    'buongorno',
-    'bongorno',
-    'bonjorno',
-    'buonjorno',
-    'buonjourno',
-  ];
-  color: string = '#fff';
-
-  @ViewChild(MatRipple) 
-  ripple: MatRipple | undefined;
+  @ViewChild(MatRipple) ripple: MatRipple | undefined;
   
-  @ViewChild('input')
-  input: ElementRef | undefined;
+  phrase = 'test';
 
-  constructor(public _firestore: FirestoreService, public _router: Router) {}
+  constructor(private _router: Router, private _firestore: FirestoreService) {}
 
-  ngAfterViewInit() {
-    this.focusInput();
-  }
-
-  onChange() {
-    if (!this.input) {
-      return;
-    }
-
-    const value = this.input.nativeElement.innerText;
-    for (const code of this.codes) {
-      if(value && code == value.toLowerCase().replace(/[^a-z]/g, '')){
-        this.nextStage();
-      }
+  ngAfterViewInit(): void {
+    const urlParams = new URLSearchParams(window.location.search);
+    const phrase = urlParams.get('phrase');
+    if (phrase && phrase === this.phrase) {
+      // Set stage to 3
+      this.nextStage();
     }
   }
 
-  focusInput() {
-    this.input?.nativeElement.focus();
-  }
-
-  nextStage() {
-    this.color = '#6f6';
+  async nextStage() {
     this.ripple?.launch({centered: true});
-  
-    setTimeout(() => {
-      this._firestore.setStage(4);
-      this._router.navigate(['/stage-4']);
-    }, 1000);
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    this._firestore.setStage(4);
+    this._router.navigate(['/stage-4']);
   }
 }

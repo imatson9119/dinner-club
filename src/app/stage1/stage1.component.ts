@@ -1,61 +1,41 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { FirestoreService } from '../firestore.service';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { InfoBarComponent } from "../info-bar/info-bar.component";
+import { FirestoreService } from '../firestore.service';
 import { MatRipple, MatRippleModule } from '@angular/material/core';
+import { InfoBarComponent } from '../info-bar/info-bar.component';
 
 @Component({
   selector: 'app-stage1',
   standalone: true,
-  imports: [
-    FormsModule,
-    InfoBarComponent,
-    MatRippleModule
-],
+  imports: [MatRippleModule, InfoBarComponent],
   templateUrl: './stage1.component.html',
   styleUrl: './stage1.component.scss'
 })
 export class Stage1Component {
 
-  code = 'feastingtogether';
-  color: string = '#fff';
+  order: string = '31570246';
+  curOrder: string = '';
 
-  @ViewChild(MatRipple) 
-  ripple: MatRipple | undefined;
+  @ViewChild(MatRipple) ripple: MatRipple | undefined;
   
-  @ViewChild('input')
-  input: ElementRef | undefined;
-
-  constructor(public _firestore: FirestoreService, public _router: Router) {}
-
-  ngAfterViewInit() {
-    this.focusInput();
-  }
-
-  onChange() {
-    if (!this.input) {
-      return;
+  constructor(public _router: Router, public _firestore: FirestoreService) {}
+  
+  clicked(button: number) {
+    if (this.curOrder.length >= this.order.length) {
+      this.curOrder = this.curOrder.substring(1) + button;
+    } else {
+      this.curOrder += button;
     }
 
-    const value = this.input.nativeElement.innerText;
-
-    if(value && this.code == value.toLowerCase().replace(/[^a-z]/g, '')){
+    if (this.curOrder == this.order) {
       this.nextStage();
     }
   }
 
-  focusInput() {
-    this.input?.nativeElement.focus();
-  }
-
-  nextStage() {
-    this.color = '#6f6';
+  async nextStage() {
     this.ripple?.launch({centered: true});
-  
-    setTimeout(() => {
-      this._firestore.setStage(2);
-      this._router.navigate(['/stage-2']);
-    }, 1000);
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    this._firestore.setStage(2);
+    this._router.navigate(['/stage-2']);
   }
 }

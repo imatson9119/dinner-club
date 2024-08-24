@@ -5,10 +5,12 @@
   justify-content: center;
   width: 100%;
   height: 100%;
+  background-color: #bf7544;
 }
 
 .text {
-  
+  position: absolute;
+  top: 30%;
   line-height: 2rem;
   text-align: center;
   letter-spacing: .4rem;

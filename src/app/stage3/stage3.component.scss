@@ -1,27 +1,15 @@
 .main-container {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 100%;
+  background: #1d2d44;
 }
 
 .text {
-  position: absolute;
-  top: 30%;
   line-height: 2rem;
   text-align: center;
   letter-spacing: .4rem;
   font-size: 2rem;
-}
-
-.input {
-  min-width: 1rem;
-  line-height: 2rem;
-  outline: none;
-  text-align: center;
-  letter-spacing: .4rem;
-  font-size: 2rem;
-  transition: all ease-in-out .5s;
 }

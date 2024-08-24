@@ -1,4 +1,4 @@
-<app-info-bar [stage]="5"></app-info-bar>
+<app-info-bar [stage]="4"></app-info-bar>
 <div
   [matRippleAnimation]="{ enterDuration: 1000, exitDuration: 1000 }"
   matRipple
@@ -8,9 +8,8 @@
   class="main-container"
   (click)="this.focusInput()"
 >
-  <div [style]="this.hasSpeechRecognition ? 'position: relative;' : 'position: absolute; top:30%;'" class="text">Hey, I just met you...</div>
+  <div class="text">RRLLRRR 📍👉🤌</div>
   <div
-  *ngIf="!this.hasSpeechRecognition"
     (input)="this.onChange()"
     contenteditable
     autofocus

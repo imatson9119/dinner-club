@@ -4,11 +4,15 @@
   justify-content: center;
   width: 100%;
   height: 100%;
+  background-color: #bf7544;
 }
 
-.text {
+.input {
+  min-width: 1rem;
   line-height: 2rem;
+  outline: none;
   text-align: center;
   letter-spacing: .4rem;
   font-size: 2rem;
+  transition: all ease-in-out .5s;
 }
