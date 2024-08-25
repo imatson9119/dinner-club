@@ -84,7 +84,7 @@ export class Stage4Component {
   }
 
   nextStage() {
-    this.color = '#6f6';
+    this.color = '#1d2d44';
     this.ripple?.launch({centered: true});
   
     setTimeout(() => {
