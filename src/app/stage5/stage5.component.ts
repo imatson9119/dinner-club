@@ -14,8 +14,8 @@ import { MatRipple, MatRippleModule } from '@angular/material/core';
 export class Stage5Component implements AfterViewInit {
 
   @ViewChild(MatRipple) ripple: MatRipple | undefined;
-  
-  phrase = 'wow-you-are-really-good-at-this';
+
+  phrase = 'start-fasting-today';
 
   constructor(private _router: Router, private _firestore: FirestoreService) {}
 

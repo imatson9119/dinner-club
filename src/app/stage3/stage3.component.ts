@@ -15,7 +15,7 @@ export class Stage3Component implements AfterViewInit {
 
   @ViewChild(MatRipple) ripple: MatRipple | undefined;
   
-  phrase = 'wow-good-job-didnt-think-youd-get-this-far';
+  phrase = 'rah-sends-his-regards';
 
   constructor(private _router: Router, private _firestore: FirestoreService) {}
 

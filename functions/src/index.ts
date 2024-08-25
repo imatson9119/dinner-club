@@ -13,6 +13,7 @@ exports.textForMax = onDocumentUpdated("progress/{userId}", (event) => {
     return;
   }
   let stage = event.data.after.data().stage;
+  let name = event.data.after.data().name;
   // query collection and see if it is a new max stage
   // if so, update the state collection
 
@@ -26,7 +27,7 @@ exports.textForMax = onDocumentUpdated("progress/{userId}", (event) => {
         admin.firestore().collection('messages').add({
           to: `whatsapp:${number}`,
           from: `whatsapp:+14155238886`,
-          body: `User progressed to stage ${stage}`
+          body: `${name} has progressed to stage ${stage}`
         });
       });    
     }

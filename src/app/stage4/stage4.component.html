@@ -8,7 +8,9 @@
   class="main-container"
   (click)="this.focusInput()"
 >
-  <div class="text">Hey, I just met you...</div>
+  <div class="text">
+    Hey, I just met you...
+  </div>
   <div
     (input)="this.onChange()"
     contenteditable
@@ -18,5 +20,11 @@
     class="input"
     [style.color]="this.color"
   ></div>
+  <div class="tip" *ngIf="this.hint1">
+    You're missing a few steps...
+  </div>
+  <div class="tip" *ngIf="this.hint2">
+    Not quite there...
+  </div>
 </div>
 <div #dummyTrigger style="display: none"></div>

@@ -18,7 +18,7 @@ import { MatRipple, MatRippleModule } from '@angular/material/core';
 })
 export class Stage2Component {
 
-  code = 'feastingtogether';
+  code = 'dinnerclubisbackbaby';
   color: string = '#fff';
 
   @ViewChild(MatRipple) 
@@ -50,7 +50,7 @@ export class Stage2Component {
   }
 
   nextStage() {
-    this.color = '#6f6';
+    this.color = '#1d2d44';
     this.ripple?.launch({centered: true});
   
     setTimeout(() => {

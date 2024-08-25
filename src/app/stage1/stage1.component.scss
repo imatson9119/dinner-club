@@ -41,7 +41,7 @@
 }
 
 .button1 {
-  @include button-styles(#aeeeae);
+  @include button-styles(#aeedae);
 }
 
 .button2 {
@@ -56,14 +56,22 @@
   @include button-styles(#b69bed);
 }
 
-.button5 {
+.button6 {
   @include button-styles(#94bde9);
 }
 
-.button6 {
+.button7 {
   @include button-styles(#a1e6e6);
 }
 
-.button7 {
-  @include button-styles(#e8cc91);
+.button8 {
+  @include button-styles(#e8c191);
+}
+
+.button5 {
+  @include button-styles(#ffffff);
+}
+
+.button9 {
+  @include button-styles(#afafaf);
 }

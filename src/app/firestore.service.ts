@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { collection, doc, Firestore, getDoc, setDoc } from '@angular/fire/firestore';
+import { ID_LOCAL_STORAGE_KEY, ID_TO_NAME } from '../constants';
 
 const ENV = document.URL.includes('localhost') ? 'dev' : 'prod';
 const LOCAL_STORAGE_KEY = 'user_hash';
@@ -57,7 +58,12 @@ export class FirestoreService {
     //     resolve(); 
     //   }); 
     // }
-    return setDoc(doc(this.progressCollection, this.userHash), {stage: stage});
+    const id = window.localStorage.getItem(ID_LOCAL_STORAGE_KEY);
+    let name = 'Unknown User';
+    if (id && ID_TO_NAME.hasOwnProperty(id)) {
+      name = ID_TO_NAME[id];
+    }
+    return setDoc(doc(this.progressCollection, this.userHash), {stage: stage, name: name});
   }
 
   canAccessStage(stage: number): Promise<boolean> { 
