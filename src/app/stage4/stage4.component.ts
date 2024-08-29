@@ -21,8 +21,7 @@ import { CommonModule } from '@angular/common';
 export class Stage4Component {
 
   codes = [
-    'chickenparm',
-    'chickenparmesan',
+    'chickenpotpie'
   ];
 
   hint1Triggers = [
@@ -31,9 +30,10 @@ export class Stage4Component {
     'callmemaybe',
   ];
   hint2Triggers = [
-    'salt',
-    'pepper',
-    'parmesan'
+    'rotisserie',
+    'thyme',
+    'celery',
+    'carrots',
   ];
   color: string = '#fff';
 
