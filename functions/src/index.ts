@@ -21,15 +21,17 @@ exports.textForMax = onDocumentUpdated("progress/{userId}", (event) => {
   const stateDoc = stateCollection.doc("maxStage");
   stateDoc.get().then((snapshot) => {
     const maxStage = snapshot.data()?.stage;
+    let text = `${name} has progressed to stage ${stage}`
     if (stage && stage > maxStage) {
-      stateDoc.set({ stage: stage });
-      numbers.forEach((number) => {
-        admin.firestore().collection('messages').add({
-          to: `whatsapp:${number}`,
-          from: `whatsapp:+14155238886`,
-          body: `${name} has progressed to stage ${stage}`
-        });
-      });    
+      text = `🚨NEW MAX STAGE🚨: ${name} has progressed to stage ${stage}`
     }
+    stateDoc.set({ stage: stage });
+    numbers.forEach((number) => {
+      admin.firestore().collection('messages').add({
+        to: `whatsapp:${number}`,
+        from: `whatsapp:+14155238886`,
+        body: text
+      });
+    });    
   });
 });
