@@ -12,7 +12,7 @@ export class InfoBarComponent {
   @Input() stage: number = 0;
 
   // Deadline in CST: September 10, 2024
-  deadline = this.getCSTDate('2024-09-10T00:00:00Z');
+  deadline = this.getCSTDate('2024-09-11T00:00:00Z');
   timeRemaining = this.timeLeft();
 
   constructor() {
