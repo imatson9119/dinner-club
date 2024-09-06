@@ -14,7 +14,7 @@ If you want to see the website or simply put your puzzle-solving skills to the t
 **IMPORTANT**:
 Note that we we initially gave each participant a unique invitation, each of which is necessary to solve the puzzles. The invitations can be viewed on Canva [here](https://www.canva.com/design/DAGOO6MNXqo/23TBZz9fK10qLPsEoFX0Ug/view?utm_content=DAGOO6MNXqo&utm_campaign=designshare&utm_medium=link&utm_source=editor).
 
-**DISCLAIMER**: Note that stages 3 and 5 required participants to go to a physical location. The physical object planted are no longer there, so you will need to use the hints provided in the puzzle solutions to solve these stages.
+**DISCLAIMER**: Note that stages 3 and 5 required participants to go to a physical location. The physical objects planted there have been removed, so you will need to use the hints provided in the puzzle solutions to solve these stages.
 
 ## Puzzle Hints / Solutions
 
